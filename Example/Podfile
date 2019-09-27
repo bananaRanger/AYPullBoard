@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AYPullBoard_Example' do
+  pod 'AYPullBoard', :path => '../'
+
+  target 'AYPullBoard_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

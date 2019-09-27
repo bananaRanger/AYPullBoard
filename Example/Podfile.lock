@@ -1,0 +1,16 @@
+PODS:
+  - AYPullBoard (0.1.0)
+
+DEPENDENCIES:
+  - AYPullBoard (from `../`)
+
+EXTERNAL SOURCES:
+  AYPullBoard:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AYPullBoard: 1c2be24426cd58a4a0556b493f4212461ddf9176
+
+PODFILE CHECKSUM: f51bcc3c57825c5342e5d53b53d50c11a4f0d8b6
+
+COCOAPODS: 1.7.3

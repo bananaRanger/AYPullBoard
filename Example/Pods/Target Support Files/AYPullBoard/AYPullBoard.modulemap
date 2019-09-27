@@ -1,0 +1,6 @@
+framework module AYPullBoard {
+  umbrella header "AYPullBoard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "AYPullBoard",
+  "version": "0.1.0",
+  "summary": "A short description of AYPullBoard.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/antonyereshchenko@gmail.com/AYPullBoard",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "antonyereshchenko@gmail.com": "anton.ereshchenko@powercode.us"
+  },
+  "source": {
+    "git": "https://github.com/antonyereshchenko@gmail.com/AYPullBoard.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AYPullBoard/Classes/**/*"
+}
