@@ -29,8 +29,13 @@ public class AYPullBoardView: UIView {
     public var pullControlView: AYPullControlView?
     public var itemsView: UIStackView?
 
-    public var initialYValueBoardPosition: CGFloat = 0
-    public var finalYValueBoardPosition: CGFloat = 0
+    public var initialYValueBoardPosition: CGFloat {
+        return _initialYValueBoardPosition
+    }
+    
+    public var finalYValueBoardPosition: CGFloat {
+        return _finalYValueBoardPosition
+    }
     
     /// Animation speed while user dragging view
     public var draggingAnimationDuration: Double {
@@ -49,6 +54,9 @@ public class AYPullBoardView: UIView {
             configurator?.movingAnimationDuration = newValue
         }
     }
+    
+    private var _initialYValueBoardPosition: CGFloat = 0
+    private var _finalYValueBoardPosition: CGFloat = 0
     
     private var configurator: AYPullBoardViewConfigurator?
     
@@ -94,7 +102,7 @@ public class AYPullBoardView: UIView {
     ///
     /// - Parameter position: from 0 to 1
     public func setInitialYPercentBoard(position: CGFloat) {
-        initialYValueBoardPosition = screenHeight * position
+        _initialYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
     
@@ -102,7 +110,7 @@ public class AYPullBoardView: UIView {
     ///
     /// - Parameter position: from 0 to superview height
     public func setInitialYValueBoard(position: CGFloat) {
-        initialYValueBoardPosition = position
+        _initialYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
     
@@ -110,7 +118,7 @@ public class AYPullBoardView: UIView {
     ///
     /// - Parameter position: from 0 to 1
     public func setFinalYPercentBoard(position: CGFloat) {
-        finalYValueBoardPosition = screenHeight * position
+        _finalYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
     
@@ -118,7 +126,7 @@ public class AYPullBoardView: UIView {
     ///
     /// - Parameter position: from 0 to superview height
     public func setFinalYValueBoard(position: CGFloat) {
-        finalYValueBoardPosition = position
+        _finalYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
     
