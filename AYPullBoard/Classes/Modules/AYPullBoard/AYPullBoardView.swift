@@ -29,18 +29,10 @@ public class AYPullBoardView: UIView {
     public var pullControlView: AYPullControlView?
     public var itemsView: UIStackView?
 
-    public var initialYValueBoardPosition: CGFloat {
-        return screenHeight.number(with: _initialPercentBoardPosition)
-    }
-    
-    public var finalYValueBoardPosition: CGFloat {
-        return screenHeight.number(with: _finalPercentBoardPosition)
-    }
+    public var initialYValueBoardPosition: CGFloat = 0
+    public var finalYValueBoardPosition: CGFloat = 0
     
     private var configurator: AYPullBoardViewConfigurator?
-    
-    private var _initialPercentBoardPosition: CGFloat = 0
-    private var _finalPercentBoardPosition: CGFloat = 0
     
     private var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
@@ -81,12 +73,22 @@ public class AYPullBoardView: UIView {
     }
     
     public func setInitialYPercentBoard(position: CGFloat) {
-        _initialPercentBoardPosition = position
+        initialYValueBoardPosition = screenHeight.number(with: position)
+        configurator?.configurateTopConstraint()
+    }
+    
+    public func setInitialYValueBoard(position: CGFloat) {
+        initialYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
     
     public func setFinalYPercentBoard(position: CGFloat) {
-        _finalPercentBoardPosition = position
+        finalYValueBoardPosition = screenHeight.number(with: position)
+        configurator?.configurateTopConstraint()
+    }
+    
+    public func setFinalYValueBoard(position: CGFloat) {
+        finalYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
     
