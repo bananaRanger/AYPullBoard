@@ -61,7 +61,7 @@ pullContentView.draggingAnimationDuration = 0.16
 
 ## Author
 
-[Anton Yereshchenko](mailto:anton.yereshchenko@gmail.com?subject=[GitHub]%20Source%20AYPullBoard)
+Anton Yereshchenko [✉️](mailto:anton.yereshchenko@gmail.com?subject=[GitHub]%20Source%20AYPullBoard)
 
 ## License
 
