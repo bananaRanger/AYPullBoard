@@ -30,7 +30,7 @@ end
 ### Demo
 
 <p align="center">
-  <img width="33%" height="33%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
+  <img width="50%" height="50%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
 </p>
 
 ## Usage
@@ -61,7 +61,7 @@ pullContentView.draggingAnimationDuration = 0.16
 
 ## Author
 
-Anton Yereshchenko
+[Anton Yereshchenko](mailto:anton.yereshchenko@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
 
 ## License
 
