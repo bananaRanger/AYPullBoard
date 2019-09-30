@@ -40,8 +40,8 @@ class AYPullBoardViewConfigurator: NSObject {
     }
     
     //MARK: - methods
-    func setup(with finalPosition: CGFloat = 8,
-               and initialPosition: CGFloat = 64) {
+    func setup(with finalPosition: CGFloat = 0.08,
+               and initialPosition: CGFloat = 0.64) {
         
         guard let view = view else { return }
         

@@ -72,21 +72,33 @@ public class AYPullBoardView: UIView {
         itemsView?.removeArrangedSubview(view)
     }
     
+    /// set bottom position for view (in percents)
+    ///
+    /// - Parameter position: from 0 to 1
     public func setInitialYPercentBoard(position: CGFloat) {
-        initialYValueBoardPosition = screenHeight.number(with: position)
+        initialYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
     
+    /// set bottom position for view
+    ///
+    /// - Parameter position: from 0 to superview height
     public func setInitialYValueBoard(position: CGFloat) {
         initialYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
     
+    /// set top position for view (in percents)
+    ///
+    /// - Parameter position: from 0 to 1
     public func setFinalYPercentBoard(position: CGFloat) {
-        finalYValueBoardPosition = screenHeight.number(with: position)
+        finalYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
     
+    /// set top position for view
+    ///
+    /// - Parameter position: from 0 to superview height
     public func setFinalYValueBoard(position: CGFloat) {
         finalYValueBoardPosition = position
         configurator?.configurateTopConstraint()

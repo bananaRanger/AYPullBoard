@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="684" width="375" height="128"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="48p-Y2-BKx"/>
+                                    <constraint firstAttribute="height" priority="999" constant="128" id="48p-Y2-BKx"/>
                                 </constraints>
                             </view>
                         </subviews>
