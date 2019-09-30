@@ -30,7 +30,7 @@ end
 ### Demo
 
 <p align="center">
-  <img width="80%" height="80%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
+  <img width="33%" height="33%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
 </p>
 
 ## Usage
