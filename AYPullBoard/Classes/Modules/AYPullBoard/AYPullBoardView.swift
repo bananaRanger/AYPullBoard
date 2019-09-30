@@ -82,10 +82,12 @@ public class AYPullBoardView: UIView {
     
     public func setInitialYPercentBoard(position: CGFloat) {
         _initialPercentBoardPosition = position
+        configurator?.configurateTopConstraint()
     }
     
     public func setFinalYPercentBoard(position: CGFloat) {
         _finalPercentBoardPosition = position
+        configurator?.configurateTopConstraint()
     }
     
 }

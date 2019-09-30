@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AYPullBoard'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Сustomized pull board based on your view.'
 
 # This description is used to generate tags and improve search results.
