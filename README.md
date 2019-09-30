@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/AYPullBoard.svg?style=flat)](https://cocoapods.org/pods/AYPullBoard)
 
 <p align="center">
-  <img width="32%" height="32%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/logo.png?raw=true">
+  <img width="64%" height="64%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/logo.png?raw=true">
 </p>
 
 ## About
@@ -30,13 +30,13 @@ end
 ### Demo
 
 <p align="center">
-  <img width="64%" height="64%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
+  <img width="80%" height="80%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/demo.mov?raw=true">
 </p>
 
 ## Usage
 
 <p align="center">
-  <img width="64%" height="64%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/expl.png?raw=true">
+  <img width="80%" height="80%" src="https://github.com/bananaRanger/AYPullBoard/blob/master/Resources/expl.png?raw=true">
 </p>
 
 ```swift
