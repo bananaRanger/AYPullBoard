@@ -32,6 +32,24 @@ public class AYPullBoardView: UIView {
     public var initialYValueBoardPosition: CGFloat = 0
     public var finalYValueBoardPosition: CGFloat = 0
     
+    /// Animation speed while user dragging view
+    public var draggingAnimationDuration: Double {
+        get {
+            return configurator?.draggingAnimationDuration ?? 0
+        } set {
+            configurator?.draggingAnimationDuration = newValue
+        }
+    }
+    
+    /// Animation speed while view return to particular place
+    public var movingAnimationDuration: Double {
+        get {
+            return configurator?.movingAnimationDuration ?? 0
+        } set {
+            configurator?.movingAnimationDuration = newValue
+        }
+    }
+    
     private var configurator: AYPullBoardViewConfigurator?
     
     private var screenHeight: CGFloat {

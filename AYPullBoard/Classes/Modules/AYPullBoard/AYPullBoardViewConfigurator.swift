@@ -34,6 +34,9 @@ class AYPullBoardViewConfigurator: NSObject {
     //MARK: - properties
     weak var view: AYPullBoardView?
     
+    var draggingAnimationDuration: Double = 0.16
+    var movingAnimationDuration: Double = 0.64
+    
     //MARK: - init
     init(view: AYPullBoardView?) {
         self.view = view
@@ -174,11 +177,6 @@ extension AYPullBoardViewConfigurator: UIScrollViewDelegate {
 
 //MARK: - AYPullBoardViewConfigurator fileprivate extension
 fileprivate extension AYPullBoardViewConfigurator {
-    struct AYAnimationConfig {
-        static let draggingDuration: Double = 0.16
-        static let movingDuration: Double = 0.64
-    }
-    
     @objc func wasDragged(gestureRecognizer: UIPanGestureRecognizer) {
         guard let view = view,
             let constraint = view.outerTopConstraint,
@@ -188,7 +186,7 @@ fileprivate extension AYPullBoardViewConfigurator {
         
         if gestureRecognizer.state == .began || gestureRecognizer.state == .changed {
             containerView.arrow?.update(direction: .straight)
-            UIView.animate(withDuration: AYAnimationConfig.draggingDuration) {
+            UIView.animate(withDuration: draggingAnimationDuration) {
                 constraint.constant += translation.y
                 view.superview?.layoutIfNeeded()
             }
@@ -197,14 +195,14 @@ fileprivate extension AYPullBoardViewConfigurator {
             if constraint.constant < view.finalYValueBoardPosition ||
                 constraint.constant < centerY {
                 containerView.arrow?.update(direction: .down)
-                UIView.animate(withDuration: AYAnimationConfig.movingDuration) {
+                UIView.animate(withDuration: movingAnimationDuration) {
                     constraint.constant = view.finalYValueBoardPosition
                     view.superview?.layoutIfNeeded()
                 }
             } else if constraint.constant > view.initialYValueBoardPosition ||
                 constraint.constant > centerY {
                 containerView.arrow?.update(direction: .up)
-                UIView.animate(withDuration: AYAnimationConfig.movingDuration ) {
+                UIView.animate(withDuration: movingAnimationDuration) {
                     constraint.constant = view.initialYValueBoardPosition
                     view.superview?.layoutIfNeeded()
                 }
@@ -220,13 +218,13 @@ fileprivate extension AYPullBoardViewConfigurator {
         
         if constraint.constant == view.initialYValueBoardPosition {
             containerView.arrow?.update(direction: .down)
-            UIView.animate(withDuration: AYAnimationConfig.movingDuration) {
+            UIView.animate(withDuration: movingAnimationDuration) {
                 constraint.constant = view.finalYValueBoardPosition
                 view.superview?.layoutIfNeeded()
             }
         } else {
             containerView.arrow?.update(direction: .up)
-            UIView.animate(withDuration: AYAnimationConfig.movingDuration ) {
+            UIView.animate(withDuration: movingAnimationDuration) {
                 constraint.constant = view.initialYValueBoardPosition
                 view.superview?.layoutIfNeeded()
             }

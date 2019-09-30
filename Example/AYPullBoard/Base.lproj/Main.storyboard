@@ -23,13 +23,13 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OV1-4I-J9d" customClass="AYPullBoardView" customModule="AYPullBoard">
                                 <rect key="frame" x="0.0" y="684" width="375" height="128"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="128" id="48p-Y2-BKx"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="OV1-4I-J9d" secondAttribute="bottom" id="4HK-Zd-DKZ"/>
                             <constraint firstAttribute="trailing" secondItem="OV1-4I-J9d" secondAttribute="trailing" id="nAi-mA-tSD"/>
