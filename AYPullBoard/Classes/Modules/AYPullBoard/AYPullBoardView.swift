@@ -22,21 +22,32 @@
 
 import UIKit
 
-//MARK: AYPullBoardView class
+//MARK: AYPullBoardViewDelegate protocol
+public protocol AYPullBoardViewDelegate: class {
+    func didChangeState(isExpanded: Bool)
+}
+
+//MARK: - AYPullBoardView class
 public class AYPullBoardView: UIView {
-    
+  
     //MARK: - properties
     public var pullControlView: AYPullControlView?
     public var itemsView: UIStackView?
 
+    public weak var delegate: AYPullBoardViewDelegate? {
+        didSet {
+            configurator?.delegate = self.delegate
+        }
+    }
+  
     public var initialYValueBoardPosition: CGFloat {
         return _initialYValueBoardPosition
     }
-    
+  
     public var finalYValueBoardPosition: CGFloat {
         return _finalYValueBoardPosition
     }
-    
+  
     /// Animation speed while user dragging view
     public var draggingAnimationDuration: Double {
         get {
@@ -45,7 +56,7 @@ public class AYPullBoardView: UIView {
             configurator?.draggingAnimationDuration = newValue
         }
     }
-    
+  
     /// Animation speed while view return to particular place
     public var movingAnimationDuration: Double {
         get {
@@ -54,16 +65,16 @@ public class AYPullBoardView: UIView {
             configurator?.movingAnimationDuration = newValue
         }
     }
-    
+  
     private var _initialYValueBoardPosition: CGFloat = 0
     private var _finalYValueBoardPosition: CGFloat = 0
-    
+  
     private var configurator: AYPullBoardViewConfigurator?
-    
+  
     private var screenHeight: CGFloat {
         return UIScreen.main.bounds.height
     }
-    
+  
     //MARK: - init
     init(with finalPosition: CGFloat,
          and initialPosition: CGFloat) {
@@ -71,33 +82,33 @@ public class AYPullBoardView: UIView {
         self.configurator = AYPullBoardViewConfigurator(view: self)
         self.configurator?.setup(with: initialPosition, and: finalPosition)
     }
-    
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configurator = AYPullBoardViewConfigurator(view: self)
         self.configurator?.setup()
     }
-    
+  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.configurator = AYPullBoardViewConfigurator(view: self)
         self.configurator?.setup()
     }
-    
+  
     //MARK: - methods
     override public func updateConstraints() {
         super.updateConstraints()
         configurator?.configurateTopConstraint()
     }
-    
+  
     public func add(view: UIView) {
         itemsView?.addArrangedSubview(view)
     }
-    
+  
     public func remove(view: UIView) {
         itemsView?.removeArrangedSubview(view)
     }
-    
+  
     /// set bottom position for view (in percents)
     ///
     /// - Parameter position: from 0 to 1
@@ -105,7 +116,7 @@ public class AYPullBoardView: UIView {
         _initialYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
-    
+  
     /// set bottom position for view
     ///
     /// - Parameter position: from 0 to superview height
@@ -113,7 +124,7 @@ public class AYPullBoardView: UIView {
         _initialYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
-    
+  
     /// set top position for view (in percents)
     ///
     /// - Parameter position: from 0 to 1
@@ -121,7 +132,7 @@ public class AYPullBoardView: UIView {
         _finalYValueBoardPosition = screenHeight * position
         configurator?.configurateTopConstraint()
     }
-    
+  
     /// set top position for view
     ///
     /// - Parameter position: from 0 to superview height
@@ -129,5 +140,5 @@ public class AYPullBoardView: UIView {
         _finalYValueBoardPosition = position
         configurator?.configurateTopConstraint()
     }
-    
+  
 }

@@ -29,7 +29,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
+        pullContentView.delegate = self
+      
         colors.forEach { [weak self] color in
             let itemView = UIView(frame: .zero)
             itemView.backgroundColor = color
@@ -42,5 +44,11 @@ class ViewController: UIViewController {
         
     }
 
+}
+
+extension ViewController: AYPullBoardViewDelegate {
+    func didChangeState(isExpanded: Bool) {
+        print("State did change: board is \(isExpanded ? "expanded" : "collapsed")")
+    }
 }
 

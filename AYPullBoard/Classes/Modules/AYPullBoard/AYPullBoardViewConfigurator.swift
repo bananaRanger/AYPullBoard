@@ -33,7 +33,8 @@ class AYPullBoardViewConfigurator: NSObject {
     
     //MARK: - properties
     weak var view: AYPullBoardView?
-    
+    var delegate: AYPullBoardViewDelegate?
+  
     var draggingAnimationDuration: Double = 0.16
     var movingAnimationDuration: Double = 0.64
     
@@ -194,6 +195,7 @@ fileprivate extension AYPullBoardViewConfigurator {
             let centerY = (view.finalYValueBoardPosition + view.initialYValueBoardPosition) / 2
             if constraint.constant < view.finalYValueBoardPosition ||
                 constraint.constant < centerY {
+                delegate?.didChangeState(isExpanded: true)
                 containerView.arrow?.update(direction: .down)
                 UIView.animate(withDuration: movingAnimationDuration) {
                     constraint.constant = view.finalYValueBoardPosition
@@ -201,6 +203,7 @@ fileprivate extension AYPullBoardViewConfigurator {
                 }
             } else if constraint.constant > view.initialYValueBoardPosition ||
                 constraint.constant > centerY {
+                delegate?.didChangeState(isExpanded: false)
                 containerView.arrow?.update(direction: .up)
                 UIView.animate(withDuration: movingAnimationDuration) {
                     constraint.constant = view.initialYValueBoardPosition
@@ -217,12 +220,14 @@ fileprivate extension AYPullBoardViewConfigurator {
             let containerView = gestureRecognizer.view as? AYPullControlView else { return }
         
         if constraint.constant == view.initialYValueBoardPosition {
+            delegate?.didChangeState(isExpanded: true)
             containerView.arrow?.update(direction: .down)
             UIView.animate(withDuration: movingAnimationDuration) {
                 constraint.constant = view.finalYValueBoardPosition
                 view.superview?.layoutIfNeeded()
             }
         } else {
+            delegate?.didChangeState(isExpanded: false)
             containerView.arrow?.update(direction: .up)
             UIView.animate(withDuration: movingAnimationDuration) {
                 constraint.constant = view.initialYValueBoardPosition
