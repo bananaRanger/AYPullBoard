@@ -48,6 +48,12 @@ public class AYPullBoardView: UIView {
         return _finalYValueBoardPosition
     }
   
+    /// Current board state (expanded/collapsed)
+    public var isExpanded: Bool {
+        get { configurator?.isExpanded ?? false }
+        set { configurator?.isExpanded = newValue }
+    }
+    
     /// Animation speed while user dragging view
     public var draggingAnimationDuration: Double {
         get {
@@ -108,7 +114,11 @@ public class AYPullBoardView: UIView {
     public func remove(view: UIView) {
         itemsView?.removeArrangedSubview(view)
     }
-  
+    
+    public func setIsExpanded(_ value: Bool, animated: Bool) {
+        configurator?.setIsExpanded(value, animated: animated)
+    }
+    
     /// set bottom position for view (in percents)
     ///
     /// - Parameter position: from 0 to 1

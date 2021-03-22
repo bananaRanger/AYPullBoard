@@ -57,6 +57,12 @@ pullContentView.setFinalYValueBoard(position: 64)
 
 pullContentView.movingAnimationDuration = 0.64
 pullContentView.draggingAnimationDuration = 0.16
+
+// toggling the state (without animation)
+pullContentView.isExpanded = true 
+
+// toggling the state (with animation)
+pullContentView.setIsExpanded(true, animated: true)
 ```
 
 ## Author

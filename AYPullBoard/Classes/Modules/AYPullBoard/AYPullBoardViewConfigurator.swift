@@ -37,6 +37,16 @@ class AYPullBoardViewConfigurator: NSObject {
   
     var draggingAnimationDuration: Double = 0.16
     var movingAnimationDuration: Double = 0.64
+
+    private var _isExpanded: Bool = false
+    
+    var isExpanded: Bool {
+        get { _isExpanded }
+        set {
+            _isExpanded = newValue;
+            updateBoardPosition()
+        }
+    }
     
     //MARK: - init
     init(view: AYPullBoardView?) {
@@ -152,19 +162,44 @@ class AYPullBoardViewConfigurator: NSObject {
     }
     
     func configurateTopConstraint() {
-        guard let view = view, let superview = view.superview else { return }
+        guard let superview = view?.superview else { return }
         
-        if view.outerTopConstraint == nil {
-            view.translatesAutoresizingMaskIntoConstraints = false
-            view.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-            view.superview?.layoutIfNeeded()
+        if view?.outerTopConstraint == nil {
+            view?.translatesAutoresizingMaskIntoConstraints = false
+            view?.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+            view?.superview?.layoutIfNeeded()
         }
         
-        guard let topConstraint = view.outerTopConstraint else { return }
-        topConstraint.constant = view.initialYValueBoardPosition
-        view.superview?.layoutIfNeeded()
+        updateTopConstraint()
     }
     
+    func setIsExpanded(_ value: Bool, animated: Bool = true) {
+        _isExpanded = value
+        updateBoardPosition(animated: animated)
+    }
+}
+
+//MARK: - Private
+extension AYPullBoardViewConfigurator {
+    private func updateBoardPosition(animated: Bool = false) {
+        delegate?.didChangeState(isExpanded: isExpanded)
+        view?.pullControlView?.arrow?.update(direction: isExpanded ? .down : .up)
+        
+        if !animated { updateTopConstraint(); return }
+        
+        UIView.animate(withDuration: movingAnimationDuration) { [weak self] in
+            self?.updateTopConstraint()
+        }
+    }
+    
+    private func updateTopConstraint() {
+        guard let value = isExpanded ?
+                view?.finalYValueBoardPosition :
+                view?.initialYValueBoardPosition else { return }
+        
+        view?.outerTopConstraint?.constant = value
+        view?.superview?.layoutIfNeeded()
+    }
 }
 
 //MARK: - UIScrollViewDelegate
@@ -195,20 +230,10 @@ fileprivate extension AYPullBoardViewConfigurator {
             let centerY = (view.finalYValueBoardPosition + view.initialYValueBoardPosition) / 2
             if constraint.constant < view.finalYValueBoardPosition ||
                 constraint.constant < centerY {
-                delegate?.didChangeState(isExpanded: true)
-                containerView.arrow?.update(direction: .down)
-                UIView.animate(withDuration: movingAnimationDuration) {
-                    constraint.constant = view.finalYValueBoardPosition
-                    view.superview?.layoutIfNeeded()
-                }
+                setIsExpanded(true)
             } else if constraint.constant > view.initialYValueBoardPosition ||
                 constraint.constant > centerY {
-                delegate?.didChangeState(isExpanded: false)
-                containerView.arrow?.update(direction: .up)
-                UIView.animate(withDuration: movingAnimationDuration) {
-                    constraint.constant = view.initialYValueBoardPosition
-                    view.superview?.layoutIfNeeded()
-                }
+                setIsExpanded(false)
             }
         }
         gestureRecognizer.setTranslation(.zero, in: containerView)
@@ -216,24 +241,9 @@ fileprivate extension AYPullBoardViewConfigurator {
     
     @objc func pullViewTouchUpInside(gestureRecognizer: UITapGestureRecognizer) {
         guard let view = view,
-            let constraint = view.outerTopConstraint,
-            let containerView = gestureRecognizer.view as? AYPullControlView else { return }
+            let constraint = view.outerTopConstraint else { return }
         
-        if constraint.constant == view.initialYValueBoardPosition {
-            delegate?.didChangeState(isExpanded: true)
-            containerView.arrow?.update(direction: .down)
-            UIView.animate(withDuration: movingAnimationDuration) {
-                constraint.constant = view.finalYValueBoardPosition
-                view.superview?.layoutIfNeeded()
-            }
-        } else {
-            delegate?.didChangeState(isExpanded: false)
-            containerView.arrow?.update(direction: .up)
-            UIView.animate(withDuration: movingAnimationDuration) {
-                constraint.constant = view.initialYValueBoardPosition
-                view.superview?.layoutIfNeeded()
-            }
-        }
+        setIsExpanded(constraint.constant == view.initialYValueBoardPosition)
     }
 }
 
